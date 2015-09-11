@@ -1,0 +1,13 @@
+1. What are the default values for different data types?
+2. How do you get the seed of the last run so that you can rerun with the same seed?
+3. Does SKETCH simplify code in the output once holes have been filled up. For instance, does:
+    if (??) {
+      x = x + 1;
+    } else if (??) {
+      y = x + 1;
+    }
+    get simplified to
+    x = x + 1;
+    or y = x + 1;
+    depending on the values of the holes.
+4. What is the catch in using SKETCH? Why would a theorem prover be preferable?
