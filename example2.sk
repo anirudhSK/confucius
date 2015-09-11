@@ -1,0 +1,40 @@
+// sketch example2.sk --bnd-inbits=32 works
+
+// sketch example2.sk --bnd-inbits=32 --bnd-cbits=32 fails saying
+// UNSATISFIABLE ASSERTION Assert at example2.sk:32 (7569693144283297320)
+
+// sketch example2.sk --bnd-inbits=32 --bnd-cbits=31 fails saying
+// UNSATISFIABLE ASSERTION Assert at example2.sk:36 (-6342475922682971918)
+
+// sketch example2.sk --bnd-inbits=32 --bnd-cbits=30 fails saying
+// Error: Casting an bit-vector to an integer is only supported for up to 16 bits.
+
+void impl(ref int state_1) {
+  state_1 = ??;
+}
+
+void spec(ref int state_1) {
+  state_1=1;
+}
+
+harness void main(ref int state_1) {
+  // Store old values
+  int old_state_1 = state_1;
+
+  // Execute codelet on old values
+  spec(state_1);
+
+  // Store spec values
+  int spec_state_1 = state_1;
+
+  // Restore old values for execution
+  state_1 = old_state_1;
+
+  // Execute implementation
+  impl(state_1);
+
+  // Store impl values
+  int impl_state_1 = state_1;
+
+  assert(impl_state_1 == spec_state_1);
+}
