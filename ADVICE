@@ -1,0 +1,35 @@
+1. if (??)
+   else if (??)
+   is bad form.
+
+   Use
+   opcode = ??(N)
+   if (opcode == 0) {
+
+   } else if (...) {
+
+   } else {
+     assert(false);
+   }
+
+   Don't pass opcode as a parameter.
+
+2. Returning structs is fine.
+3. Start with smaller ints and go slowly. Don't shoot for 32 bits right away.
+4. Specify bits manually using ??(N), and NOT cbits (no one does that anymore).
+
+// sketch example2.sk --bnd-inbits=32 works
+
+// sketch example2.sk --bnd-inbits=32 --bnd-cbits=32 fails saying
+// UNSATISFIABLE ASSERTION Assert at example2.sk:32 (7569693144283297320)
+(We compare a signed 32-bit with an unsigned 32-bit passed through cbits)
+
+// sketch example2.sk --bnd-inbits=32 --bnd-cbits=31 fails saying
+// UNSATISFIABLE ASSERTION Assert at example2.sk:36 (-6342475922682971918)
+(We compare a signed 32-bit with an unsigned 31-bit passed through cbits)
+
+// sketch example2.sk --bnd-inbits=32 --bnd-cbits=30 fails saying
+// Error: Casting an bit-vector to an integer is only supported for up to 16 bits.
+(Ok, so inbits and size of holes should be the same, inbits can't be lesser or greater).
+
+Summary: Don't tweak inbits and cbits until and unless you get it working for the default setting.
