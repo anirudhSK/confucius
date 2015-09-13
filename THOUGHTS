@@ -1,0 +1,4 @@
+SKETCH should support a template mechanism to write generic code.
+For instance, an n-bit multiplexer has the same logic for all n,
+but I think SKETCH requires us to spell each of these out separately
+as separate SKETCH programs.
