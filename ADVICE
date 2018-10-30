@@ -33,3 +33,6 @@
 (Ok, so inbits and size of holes should be the same, inbits can't be lesser or greater).
 
 Summary: Don't tweak inbits and cbits until and unless you get it working for the default setting.
+
+5. Use bnd-int-range to reduce the maximum size of intermediate integers. This is documented on page 41 of
+https://people.csail.mit.edu/asolar/manual.pdf and is also used by https://github.com/uwplse/Casper/blob/df29d441d1ed98df3c938ca1bf3fbe3cd703e649/compiler/src/casper/visit/GenerateScaffold.java#L402
